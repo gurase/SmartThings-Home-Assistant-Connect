@@ -192,7 +192,7 @@ def poll() {
         
         if (entity.attributes.brightness) {
         	device.sendEvent(name: "level", value: entity.attributes.brightness / 255 * 100)
-            device.sendEvent(name: "switch.setLevel", value: entity.attributes.brightness.intdiv(255) * 100)
+            device.sendEvent(name: "switch.setLevel", value: entity.attributes.brightness / 255 * 100)
         }
         
         device.sendEvent(name: "switch", value: entity.state)
