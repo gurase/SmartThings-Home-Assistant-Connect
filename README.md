@@ -8,7 +8,7 @@ Currently only cover, light, and switch device types are supported.
 - **light** - All lights are treated like colored bulbs. You are able to use voice control to set the color.
 - **switch** - Basic on and off. Surprise, surprise.
 
-You can use the **emulated_hue_name** attribute in Home Assistant to set a custom name for your device in SmartThings (eventually I will probably change this to use a more specific attribute name). Otherwise, friendly_name will be used.
+You can use the **smartthings_name** attribute in Home Assistant to set a custom name for your device in SmartThings. Otherwise, **friendly_name** will be used.
 
 ## Installation
 1. Install and publish the Smart App in the Smart App IDE using "Create via code".
