@@ -126,7 +126,7 @@ def getOptions() {
     	def values = []
         
     	domainEntities.each { entityId, entity ->
-        	values.push(["${entityId}": entity.attributes.emulated_hue_name ?: entity.attributes.friendly_name])
+        	values.push(["${entityId}": entity.attributes.smartthings_name ?: entity.attributes.friendly_name])
         }
         
         options["${domain}"] = values
@@ -142,7 +142,7 @@ def updateChildren(chosenEntities, domain, deviceType) {
     chosenEntities.each { entityId ->
 		if (!getChildDevice(entityId)) {
 			device = addChildDevice(app.namespace, deviceType, entityId, null, 
-            	[name: "Device.${entityId}", label:"${domain[entityId].attributes.emulated_hue_name ?: domain[entityId].attributes.friendly_name}", completedSetup: true])
+            	[name: "Device.${entityId}", label:"${domain[entityId].attributes.smartthings_name ?: domain[entityId].attributes.friendly_name}", completedSetup: true])
 			log.debug "created ${device.displayName} with id ${device.getDeviceNetworkId()}"
 		}
 	}
@@ -172,7 +172,7 @@ def poll() {
         
         device.sendEvent(name: "windowShade", value: entity.state)
         device.sendEvent(name: "level", value: entity.attributes.current_position)
-        device.sendEvent(name: "label", value: entity.attributes.emulated_hue_name ?: entity.attributes.friendly_name)
+        device.sendEvent(name: "label", value: entity.attributes.smartthings_name ?: entity.attributes.friendly_name)
     }
     
     // Lights
@@ -196,7 +196,7 @@ def poll() {
         }
         
         device.sendEvent(name: "switch", value: entity.state)
-        device.sendEvent(name: "label", value: entity.attributes.emulated_hue_name ?: entity.attributes.friendly_name)
+        device.sendEvent(name: "label", value: entity.attributes.smartthings_name ?: entity.attributes.friendly_name)
     }
     
     // Switches
@@ -207,7 +207,7 @@ def poll() {
     	def entity = state.entities.switches[entityId]
         
         device.sendEvent(name: "switch", value: entity.state)
-        device.sendEvent(name: "label", value: entity.attributes.emulated_hue_name ?: entity.attributes.friendly_name)
+        device.sendEvent(name: "label", value: entity.attributes.smartthings_name ?: entity.attributes.friendly_name)
     }
 }
 
