@@ -50,7 +50,6 @@ def initialize() {
     
     addChildren(covers ?: [], state.entities["covers"], "Home Assistant Cover")
     addChildren(lights ?: [], state.entities["lights"], "Home Assistant Light")
-    addChildren(scenes ?: [], state.entities["scenes"], "Home Assistant Switch")
     addChildren(scripts ?: [], state.entities["scripts"], "Home Assistant Switch")
     addChildren(switches ?: [], state.entities["switches"], "Home Assistant Switch")
     
@@ -74,7 +73,6 @@ def setupPage() {
         	paragraph "Tap below to see the list of devices available in Home Assistant and select the ones you want to connect to SmartThings."
             input(name: "covers", type: "enum", required: false, title: "Covers", multiple: true, options: options.covers)
             input(name: "lights", type: "enum", required: false, title: "Lights", multiple: true, options: options.lights)
-            input(name: "scenes", type: "enum", required: false, title: "Scenes", multiple: true, options: options.scenes)
             input(name: "scripts", type: "enum", required: false, title: "Scripts", multiple: true, options: options.scripts)
             input(name: "switches", type: "enum", required: false, title: "Switches", multiple: true, options: options.switches)
         }
@@ -113,15 +111,6 @@ def getEntities() {
             	lights["${it.entity_id}"] = it
             }
             entities["lights"] = lights
-            
-            // Scenes
-            def scenes = [:]
-            resp.data.findAll { 
-            	it.entity_id.startsWith("scene.") 
-            }.each {
-            	scenes["${it.entity_id}"] = it
-            }
-            entities["scenes"] = scenes
             
             // Scripts
             def scripts = [:]
@@ -222,12 +211,12 @@ def poll() {
         device.sendEvent(name: "label", value: entity.attributes.smartthings_name ?: entity.attributes.friendly_name)
     }
     
-    // Scenes, Scripts, Switches
+    // Scripts, Switches
     devices.findAll {
     	it.getTypeName() == "Home Assistant Switch"
     }.each { device ->
     	def entityId = device.getDeviceNetworkId()
-    	def entity = state.entities.subMap(["scenes", "scripts", "switches"]).collectEntries { it.value }[entityId]
+    	def entity = state.entities.subMap(["scripts", "switches"]).collectEntries { it.value }[entityId]
         
         device.sendEvent(name: "switch", value: entity.state)
         device.sendEvent(name: "label", value: entity.attributes.smartthings_name ?: entity.attributes.friendly_name)
