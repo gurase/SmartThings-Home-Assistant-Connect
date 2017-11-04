@@ -2,10 +2,12 @@
 This SmartApp allows you to connect your existing Home Assistant devices to SmartThings. The main reason I created this is because I was frustrated by the limitations of the emulated_hue component, specifically with Google Home. With your Home Assistant devices available in SmartThings, you can connect your SmartThings hub to Alexa/Google Home instead of relying on emulated_hue.
 
 ## Supported Devices, Features, and Limitations
-Currently only cover, light, and switch device types are supported.
+Currently cover, light, scene, script, and switch device types are supported.
 
 - **cover** - Like emulated_hue, cover devices are treated like lights, so you have to say "turn on the shades" to open them, etc. Also supports setting the position.
 - **light** - All lights are treated like colored bulbs. You are able to use voice control to set the color.
+- **scene** - Treated like a switch.
+- **script** - Treated like a switch.
 - **switch** - Basic on and off. Surprise, surprise.
 
 You can use the **smartthings_name** attribute in Home Assistant to set a custom name for your device in SmartThings. Otherwise, **friendly_name** will be used.
