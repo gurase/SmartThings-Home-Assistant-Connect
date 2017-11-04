@@ -64,13 +64,13 @@ def refresh() {
 }
 
 def on() {
-	if (parent.postService("/api/services/switch/turn_on", ["entity_id": device.deviceNetworkId])) {
+	if (parent.postService("/api/services/homeassistant/turn_on", ["entity_id": device.deviceNetworkId])) {
     	sendEvent(name: "switch", value: "on")
     }
 }
 
 def off() {
-	if (parent.postService("/api/services/switch/turn_off", ["entity_id": device.deviceNetworkId])) {
+	if (parent.postService("/api/services/homeassistant/turn_off", ["entity_id": device.deviceNetworkId])) {
     	sendEvent(name: "switch", value: "off")
     }
 }
