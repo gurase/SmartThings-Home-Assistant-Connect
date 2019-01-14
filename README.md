@@ -14,7 +14,7 @@ You can use the **smartthings_name** attribute in Home Assistant to set a custom
 ## Installation
 1. Install and publish the Smart App in the Smart App IDE using "Create via code".
 1. Under Settings in the Smart App IDE, add the following App Settings:
-   - **apiPassword** - your Home Assistant password
+   - **token** - a long-lived access token, created in your Home Assistant user account
    - **hassUrl** - your Home Assistant URL
 1. Install and publish all Device Handlers in the Device Handler IDE using "Create via code".
 1. Open the SmartThings app on your phone, and install the Home Assistant Connect SmartApp from the Marketplace (under My Apps).
