@@ -24,7 +24,7 @@ definition(
     iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
     iconX3Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png") {
     appSetting "hassUrl"
-    appSetting "apiPassword"
+    appSetting "token"
     singleInstance: true
 }
 
@@ -86,7 +86,7 @@ def getEntities() {
 	def params = [
         uri: appSettings.hassUrl,
         path: "/api/states",
-        headers: ["x-ha-access": appSettings.apiPassword],
+        headers: ["Authorization": "Bearer " + appSettings.token],
         contentType: "application/json"
     ]
     
@@ -228,7 +228,7 @@ def postService(service, data) {
 	def params = [
         uri: appSettings.hassUrl,
         path: service,
-        headers: ["x-ha-access": appSettings.apiPassword],
+        headers: ["Authorization": "Bearer " + appSettings.token],
         requestContentType: "application/json",
         body: data
     ]
