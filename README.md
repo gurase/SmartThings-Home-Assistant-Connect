@@ -1,4 +1,7 @@
 # SmartThings-Home-Assistant-Connect
+
+## THIS PROJECT IS NO LONGER BEING MAINTAINED
+
 This SmartApp allows you to connect your existing Home Assistant devices to SmartThings. The main reason I created this is because I was frustrated by the limitations of the emulated_hue component, specifically with Google Home. With your Home Assistant devices available in SmartThings, you can connect your SmartThings hub to Alexa/Google Home instead of relying on emulated_hue.
 
 ## Supported Devices, Features, and Limitations
